@@ -82,9 +82,9 @@ decl_module! {
 		pub fn create_claim(origin, claim: Vec<u8>) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
 
-			// len overflow 
+			// ensure claim length overflow
 			ensure!((claim.len()-1) < T::ClaimMaxLen::get().into(), Error::<T>::LenOverflow);
-
+			
 			ensure!(!Proofs::<T>::contains_key(&claim), Error::<T>::ProofAlreadyExist);
 
 			Proofs::<T>::insert(&claim, (sender.clone(), frame_system::Module::<T>::block_number()));

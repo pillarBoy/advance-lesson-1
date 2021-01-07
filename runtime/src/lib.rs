@@ -269,6 +269,7 @@ impl pallet_template::Trait for Runtime {
 }
 
 parameter_types! {
+	// claim max length default 10
 	pub const ClaimMaxLen: u8 = 10;
 }
 
